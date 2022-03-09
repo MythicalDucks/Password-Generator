@@ -7,6 +7,7 @@ from tkinter.ttk import Labelframe
 from random import randint
 import random
 import string
+import pyperclip as pc
 
 
 def calculator():
@@ -68,6 +69,10 @@ def calculator():
 
         # Output password to the screen
         pw_entry.insert(0, my_password)
+    
+    def copytoclipboard():
+        my_password = pw_entry.get()
+        pc.copy(my_password)
 
     def save_password():
         password_window = Tk()
@@ -100,6 +105,8 @@ def calculator():
                 # Create our Buttons
         my_button = Button(my_frame, text="Generate Strong Password")
         my_button.grid(row=0, column=0, padx=10)
+
+
 
 #my_password += chr(randint(34,126)) - All characters, numbers and symbols
 
@@ -148,6 +155,14 @@ def calculator():
     letters.grid(row=2,column=1)
     symbols = Checkbutton(checkbuttonframe, text="Symbols", variable=var3, command= strong_password)
     symbols.grid(row=2,column=2)
+
+
+    copybuttonframe = Frame(calculatorapp)
+    copybuttonframe.configure(bg = 'grey')
+    copybuttonframe.pack(pady=10)
+
+    copybutton = Button(copybuttonframe, text="Copy to Clipboard!", command=copytoclipboard)
+    copybutton.pack()
 
 
 
@@ -271,5 +286,3 @@ register()
 
 # Start Code
 signuppage.mainloop()
-
-
